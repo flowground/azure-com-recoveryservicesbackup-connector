@@ -1,0 +1,85 @@
+{
+    "type": "object",
+    "properties": {
+        "vaultName": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "policyName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Base for all resources.",
+                    "properties": {
+                        "eTag": {
+                            "description": "Optional ETag.",
+                            "type": "string"
+                        },
+                        "id": {
+                            "description": "Resource ID represents the complete path to the resource.",
+                            "type": "string"
+                        },
+                        "location": {
+                            "description": "Resource location.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name associated with the resource.",
+                            "type": "string"
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags.",
+                            "type": "object"
+                        },
+                        "type": {
+                            "description": "Resource type represents the complete path of the form Namespace/ResourceType/ResourceType/...",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-azure-resource": true
+                }
+            ],
+            "description": "The base class for backup policy. Workload-specific backup policies are derived from this class.",
+            "properties": {
+                "properties": {
+                    "description": "The base class for a backup policy. Workload-specific backup policies are derived from this class.",
+                    "discriminator": {
+                        "propertyName": "backupManagementType"
+                    },
+                    "properties": {
+                        "backupManagementType": {
+                            "description": "This property is used as the discriminator for deciding the specific types in the polymorphic chain of types.",
+                            "type": "string"
+                        },
+                        "protectedItemsCount": {
+                            "description": "The number of items associated with this policy.",
+                            "format": "int32",
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

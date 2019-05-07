@@ -1,0 +1,92 @@
+{
+    "type": "object",
+    "properties": {
+        "vaultName": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "fabricName": {
+            "required": true,
+            "type": "string"
+        },
+        "containerName": {
+            "required": true,
+            "type": "string"
+        },
+        "protectedItemName": {
+            "required": true,
+            "type": "string"
+        },
+        "recoveryPointId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Base for all resources.",
+                    "properties": {
+                        "eTag": {
+                            "description": "Optional ETag.",
+                            "type": "string"
+                        },
+                        "id": {
+                            "description": "Resource ID represents the complete path to the resource.",
+                            "type": "string"
+                        },
+                        "location": {
+                            "description": "Resource location.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name associated with the resource.",
+                            "type": "string"
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags.",
+                            "type": "object"
+                        },
+                        "type": {
+                            "description": "Resource type represents the complete path of the form Namespace/ResourceType/ResourceType/...",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-azure-resource": true
+                }
+            ],
+            "description": "The parameters to restore files or folders.",
+            "properties": {
+                "properties": {
+                    "description": "Parameters to restore file or folders API.",
+                    "discriminator": {
+                        "propertyName": "objectType"
+                    },
+                    "properties": {
+                        "objectType": {
+                            "description": "This property is used as the discriminator for deciding the specific types in the polymorphic chain of types.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
